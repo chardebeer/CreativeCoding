@@ -33,16 +33,16 @@ gradient.addColorStop(1, '#4bc0c8');
  
 
     context.fillStyle = gradient;
-const cx = width * 0.5;
-const cy = height * 0.5;
-const w = width * 0.01;
-const h = height * 0.1;
+const cx = 1;
+const cy = 1;
+const w = width * 0.05;
+const h = height * 0.5;
 let x, y;
 
 
 
-const num = 36;
-const radius = width * 0.3;
+const num = 20;
+const radius = width * 0.6;
 
 for (let i = 0; i < num; i++  ){
 const slice = math.degToRad(360 / num);
