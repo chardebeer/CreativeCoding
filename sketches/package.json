@@ -4,7 +4,8 @@
   "description": "",
   "main": "sketch-01.js",
   "scripts": {
-    "start": "canvas-sketch sketch-02.js --output=output/o2",
+    "new": "canvas-sketch sketch-03.js --new --open",
+    "start": "canvas-sketch sketch-03.js --output=output/03",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
