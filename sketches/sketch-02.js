@@ -4,7 +4,8 @@ const random = require('canvas-sketch-util/random');
 
 
 const settings = {
-  dimensions: [ 1080, 1080 ]
+  dimensions: [ 1080, 1080 ],
+  animate: true
 };
 
 /**
@@ -23,25 +24,27 @@ const sketch = () => {
   return ({ context, width, height }) => {
 
     const gradient = context.createLinearGradient(0.5, 0.5, 200, 300)
-gradient.addColorStop(0, '#c779d0');
-gradient.addColorStop(1, '#4bc0c8');
+    gradient.addColorStop(0, 'rgba(0,188,255,0.36)');
+    gradient.addColorStop(0.5 , 'rgb(163,62,245)');
 
+    const inv = context.createLinearGradient(0.5, 0.5, 200, 300)
+    inv.addColorStop(0, 'rgba(163,62,245,0.19)');
+    inv.addColorStop(0.5 , 'rgba(0,188,255,0.22)');
 
     context.fillStyle = "black";
     context.fillRect(0, 0, width, height);
 
  
 
-    context.fillStyle = gradient;
-const cx = width * 0.5;
+    context.fillStyle = inv;
+const cx = width * 0.55;
 const cy = height * 0.5;
 const w = width * 0.01;
-const h = height * 0.1;
+const h = height * 0.9;
 let x, y;
 
 
-
-const num = 1000;
+const num = 200;
 const radius = width * 0.3;
 
 for (let i = 0; i < num; i++  ){
@@ -51,13 +54,14 @@ const angle = slice * i;
 x = cx + radius * Math.sin(angle);
 y = cy + radius * Math.cos(angle);
 
+
   context.save();
   context.translate(x, y);
   context.rotate(-angle);
-  context.scale(random.range(0.4, 1), random.range(0.3, 1))
+  context.scale(random.range(0.5, 1), random.range(0.1, 1))
 
   context.beginPath();
-  context.rect(-w * 0.5, random.range(0, -h * 0.3),w, h);
+  context.rect( 0, 0,-w, -h);
   context.fill();
   context.restore();
 
@@ -65,13 +69,13 @@ y = cy + radius * Math.cos(angle);
 
   context.strokeStyle = gradient;
   context.save();
-  context.translate(cx, cy);
+  context.translate(x + (1 + Math.sqrt(5)) / 2 , y );
   context.rotate(-angle);
 
-  context.lineWidth = random.range(5, 10);
+  context.lineWidth = random.range(1, 10);
 
   context.beginPath();
-  context.arc(0, 0, radius * random.range(0.7, 1.3), slice * random.range(1, -8), slice * random.range(1, 5));
+  context.arc(100 * Math.cos(60 * num) , 100 * Math.sin(60 * num), radius *  Math.PI / 2, 0, Math.PI * 2 );
   context.stroke();
   context.restore();
 
