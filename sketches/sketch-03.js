@@ -1,6 +1,6 @@
 const canvasSketch = require('canvas-sketch');
 const random = require('canvas-sketch-util/random');
-const math = require('canvas-sketch-util/math');
+const Tweakpane = require('tweakpane');
 
 const settings = {
   dimensions: [ 1080, 1080 ],
@@ -35,9 +35,6 @@ const sketch = ({ context, width, height }) => {
 
       const dist = agent.pos.getDistance(other.pos);
 
-      if (dist > 200) continue;
-
-        context.lineWidth = math.mapRange(dist, 0, 200, 12, 1)
 
         context.beginPath();
         context.moveTo(agent.pos.x, agent.pos.y);
@@ -51,8 +48,6 @@ const sketch = ({ context, width, height }) => {
         agent.update();
         agent.draw(context);
         agent.bounce(width, height);
-        //agent.wrap(width, height);
-
       });
   };
 };
@@ -64,7 +59,6 @@ class Vector{
   this.x = x;
   this.y = y;
   }
-  //uses pythagoras theorem to get hypotenuse of right-angled triangle
   getDistance(v){
     const dx = this.x - v.x;
     const dy = this.y - v.y;
@@ -81,11 +75,6 @@ class Agent {
   bounce(width, height){
     if (this.pos.x <= 0 || this.pos.x >= width) this.vel.x *= -1;
     if (this.pos.y <= 0 || this.pos.y >= height) this.vel.y *= -1;
-
-  }
-  wrap(width, height){
-    if (this.pos.x > width) this.pos.x = 0;
-    if (this.pos.y > height) this.pos.y = 0;
 
   }
 
